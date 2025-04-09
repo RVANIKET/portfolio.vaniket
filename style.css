@@ -1,0 +1,284 @@
+:root {
+    --bg-color: #D1E9F6;        /* Light Blue background */
+    --text-primary: #1a1a1a;    /* Dark primary text */
+    --text-secondary: #666666;  /* Lighter secondary text */
+    --border-light: #eaeaea;    /* Light border for separation */
+    --font-title: 'Lexend', sans-serif;
+    --font-body: 'Inter', sans-serif; /* Clean sans-serif for body */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory; /* Re-enable scroll snapping */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    /* Ensure body itself doesn't scroll, only main-content */
+    overflow: hidden;
+}
+
+/* --- Falling Ash Animation --- */
+#ash-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow clicks to pass through */
+    overflow: hidden; /* Hide particles that go outside */
+    z-index: 999; /* Below nav, above content */
+}
+
+.ash-particle {
+    position: absolute;
+    top: -10px; /* Start above screen */
+    width: 3px;
+    height: 3px;
+    background-color: var(--text-secondary); /* Use secondary text color */
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.6;
+    }
+    /* Add a slight horizontal drift */
+    50% {
+        transform: translateY(50vh) translateX(15px);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(105vh) translateX(-5px); /* End below screen */
+        opacity: 0;
+    }
+}
+/* --- End Ash Animation --- */
+
+/* Quick Jump Navigation Styles */
+#quick-nav {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 0;
+    z-index: 1000; /* Above content, below preloader */
+    /* Optional background/blur for visibility */
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    /* backdrop-filter: blur(5px); */
+    /* border-radius: 0 0 10px 10px; */
+}
+
+#quick-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Adjust spacing */
+}
+
+#quick-nav a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.3rem 0.5rem;
+    transition: color 0.2s ease;
+}
+
+#quick-nav a:hover {
+    color: var(--text-primary);
+}
+
+/* Style for the active link (optional, requires JS) */
+/* #quick-nav a.active {
+    color: var(--accent-color); 
+    font-weight: 700; 
+}*/
+
+/* Remove heading animation styles */
+#main-heading {
+    font-family: var(--font-title);
+    color: var(--text-primary); /* Dark text */
+    font-size: clamp(3rem, 10vw, 6rem); /* Responsive font size */
+    margin: 0 0 0.5rem 0; /* Reduced bottom margin */
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+#Dreamer {
+    text-decoration: line-through;
+}
+
+/* Remove animation body class rules */
+
+#main-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in 0.1s, visibility 0s linear 0.6s; /* Adjust fade-in */
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow-y: scroll; /* Enable scrolling on this container */
+    scroll-snap-type: y mandatory; /* Apply snapping here */
+}
+
+/* Navigation Styles */
+/* #main-nav { ... } */
+
+/* Content Section General Styling */
+.content-section {
+    height: 100vh; /* Full viewport height */
+    scroll-snap-align: start; /* Snap to start */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    padding: 2rem; /* Padding inside */
+    max-width: 900px; /* Limit content width within section */
+    margin: 0 auto; /* Center content block horizontally */
+    text-align: center; /* Center text within */
+}
+
+.content-section h2 {
+    font-family: var(--font-title);
+    font-size: 2.5rem; /* Larger section titles */
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    padding-bottom: 0;
+    font-weight: 700;
+}
+
+/* Hero Section Styling */
+#hero {
+    /* Inherits centering from .content-section */
+    /* Remove min-height, display, flex, justify, align, margin-top, padding-top */
+}
+
+#hero .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin-top: 0;
+}
+
+/* About Section Styling */
+#about h2 {
+   text-align: center;
+   margin-bottom: 3rem;
+}
+
+.about-content {
+    /* Keep grid for responsive layout if desired, or simplify */
+    display: flex; /* Simpler flex layout */
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%; /* Take full width of section */
+}
+
+/* Remove @media query for grid */
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 0 1rem 0; /* Adjust margin for flex */
+}
+
+.about-me {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+    max-width: 650px; /* Limit text width */
+}
+
+.social-links {
+    margin-top: 2.5rem;
+}
+
+/* Keep .social-links a, img styles */
+.social-links a {
+    margin: 0 0.8rem;
+    display: inline-block;
+}
+
+.social-links img {
+    height: 28px;
+    width: 28px;
+    opacity: 0.7;
+    filter: grayscale(1);
+    transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.social-links img:hover {
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+/* Footer Styles */
+/* #main-footer { ... } */
+
+/* --- Preloader Styles --- */
+/* Option 1: Keep existing preloader */
+/* Option 2: Simplify or theme preloader */
+#preloader {
+    position: fixed;
+    inset: 0;
+    background-color: var(--bg-color); /* Will now use the new light blue */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out 0.1s, visibility 0s linear 0.6s; /* Fade out slightly later */
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Simplified loader text style (Optional) */
+.loader {
+  width: fit-content;
+  font-size: 24px;
+  font-family: var(--font-title);
+  font-weight: bold;
+  color: var(--text-secondary);
+  /* Remove complex background/animation */
+}
+.loader:before {
+  content: "Loading...";
+}
+/* Remove @keyframes l15 */
+
+
+/* State when loaded */
+body.loaded #preloader {
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.loaded #main-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Remove hero content visibility rules */
+
+
