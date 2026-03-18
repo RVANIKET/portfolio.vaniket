@@ -253,6 +253,24 @@ body {
     visibility: visible;
 }
 
+/* --- Page-specific overrides --- */
+/* Allow normal scrolling on standalone pages like privacy.html */
+body.privacy-page {
+    overflow: auto;
+}
+
+body.privacy-page #main-content {
+    height: auto;
+    max-height: none;
+    overflow-y: auto;
+    scroll-snap-type: none;
+}
+
+body.privacy-page .content-section {
+    height: auto;
+    scroll-snap-align: none;
+}
+
 /* Simplified loader text style (Optional) */
 .loader {
   width: fit-content;
