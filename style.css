@@ -136,7 +136,7 @@ body {
     width: 100%;
     height: 100vh; /* Full viewport height */
     overflow-y: scroll; /* Enable scrolling on this container */
-    scroll-snap-type: y mandatory; /* Apply snapping here */
+    scroll-snap-type: y proximity; /* Apply snapping but allow natural scrolling */
 }
 
 /* Navigation Styles */
@@ -146,6 +146,7 @@ body {
 .content-section {
     height: 100vh; /* Full viewport height */
     scroll-snap-align: start; /* Snap to start */
+    scroll-margin-top: 6rem; /* Prevent fixed nav from overlapping anchored sections */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center vertically */
@@ -154,6 +155,14 @@ body {
     max-width: 900px; /* Limit content width within section */
     margin: 0 auto; /* Center content block horizontally */
     text-align: center; /* Center text within */
+}
+
+/* Make the privacy section grow naturally (no fixed 100vh) so long text can scroll normally */
+#privacy {
+    height: auto;
+    min-height: 100vh;
+    scroll-snap-align: none;
+    padding-bottom: 4rem;
 }
 
 .content-section h2 {
