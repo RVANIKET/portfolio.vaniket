@@ -89,6 +89,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 1.5rem; /* Adjust spacing */
 }
@@ -155,14 +156,6 @@ body {
     max-width: 900px; /* Limit content width within section */
     margin: 0 auto; /* Center content block horizontally */
     text-align: center; /* Center text within */
-}
-
-/* Make the privacy section grow naturally (no fixed 100vh) so long text can scroll normally */
-#privacy {
-    height: auto;
-    min-height: 100vh;
-    scroll-snap-align: none;
-    padding-bottom: 4rem;
 }
 
 .content-section h2 {
@@ -280,6 +273,44 @@ body.privacy-page .content-section {
     scroll-snap-align: none;
 }
 
+body.privacy-page #quick-nav {
+    width: min(100%, 960px);
+    padding: 1rem 1.5rem;
+}
+
+body.privacy-page .privacy-content {
+    min-height: 100vh;
+    max-width: 760px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    padding-top: 7rem;
+    padding-bottom: 4rem;
+}
+
+body.privacy-page .privacy-content h1 {
+    font-family: var(--font-title);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin: 0 0 1rem;
+}
+
+body.privacy-page .privacy-content h2 {
+    font-size: 1.4rem;
+    margin: 2rem 0 0.75rem;
+    text-align: left;
+}
+
+body.privacy-page .privacy-content p,
+body.privacy-page .privacy-content li {
+    max-width: 65ch;
+    color: var(--text-primary);
+}
+
+body.privacy-page .privacy-content ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.25rem;
+}
+
 /* Simplified loader text style (Optional) */
 .loader {
   width: fit-content;
@@ -307,5 +338,3 @@ body.loaded #main-content {
 }
 
 /* Remove hero content visibility rules */
-
-
